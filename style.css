@@ -150,6 +150,25 @@ body {
   margin-top: 4px;
 }
 
+.answer-section {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+.answer-section h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  color: #ffd900;
+}
+
+#answerCanvas {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 2px solid #ffd900;
+}
+
 .footer {
   width: 100%;
   max-width: 640px;

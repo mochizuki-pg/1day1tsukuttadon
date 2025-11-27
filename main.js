@@ -1,5 +1,7 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const answerCanvas = document.getElementById("answerCanvas");
+const answerCtx = answerCanvas.getContext("2d");
 const startBtn = document.getElementById("startBtn");
 const finishBtn = document.getElementById("finishBtn");
 const resetBtn = document.getElementById("resetBtn");
@@ -8,6 +10,8 @@ const messageDisplay = document.getElementById("message");
 
 canvas.width = 800;
 canvas.height = 800;
+answerCanvas.width = 400;
+answerCanvas.height = 400;
 
 const correctPositions = {
   leftEye: { x: 320, y: 370 },
@@ -429,9 +433,113 @@ startBtn.addEventListener("click", startGame);
 finishBtn.addEventListener("click", finishGame);
 resetBtn.addEventListener("click", resetGame);
 
+function drawAnswerImage() {
+  const scale = 0.5;
+  const cx = answerCanvas.width / 2;
+  const cy = answerCanvas.height / 2;
+  const planetR = 125;
+
+  answerCtx.fillStyle = "#493f82";
+  answerCtx.fillRect(0, 0, answerCanvas.width, answerCanvas.height);
+
+  answerCtx.save();
+  answerCtx.translate(cx, cy);
+  answerCtx.scale(1, 0.3);
+  answerCtx.strokeStyle = "#ffffff";
+  answerCtx.lineWidth = 17.5;
+  answerCtx.beginPath();
+  answerCtx.arc(0, 0, planetR * 1.6, 0, Math.PI * 2);
+  answerCtx.stroke();
+  answerCtx.strokeStyle = "#000000";
+  answerCtx.lineWidth = 4;
+  answerCtx.beginPath();
+  answerCtx.arc(0, 0, planetR * 1.6 + 8.5, 0, Math.PI * 2);
+  answerCtx.stroke();
+  answerCtx.beginPath();
+  answerCtx.arc(0, 0, planetR * 1.6 - 8.5, 0, Math.PI * 2);
+  answerCtx.stroke();
+  answerCtx.restore();
+
+  answerCtx.fillStyle = "#8be8e2";
+  answerCtx.beginPath();
+  answerCtx.arc(cx, cy, planetR, 0, Math.PI * 2);
+  answerCtx.fill();
+  answerCtx.strokeStyle = "#000000";
+  answerCtx.lineWidth = 4;
+  answerCtx.stroke();
+
+  const leftEyeX = 320 * scale;
+  const leftEyeY = 370 * scale;
+  const rightEyeX = 480 * scale;
+  const rightEyeY = 370 * scale;
+  const mouthX = 400 * scale;
+  const mouthY = 505 * scale;
+  const leftCheekX = 280 * scale;
+  const leftCheekY = 480 * scale;
+  const rightCheekX = 520 * scale;
+  const rightCheekY = 480 * scale;
+
+  const eyeR = 30;
+
+  answerCtx.fillStyle = "#ffffff";
+  answerCtx.beginPath();
+  answerCtx.ellipse(leftEyeX, leftEyeY, eyeR * 0.75, eyeR, 0, 0, Math.PI * 2);
+  answerCtx.fill();
+  answerCtx.strokeStyle = "#000000";
+  answerCtx.lineWidth = 4;
+  answerCtx.stroke();
+
+  answerCtx.fillStyle = "#ffffff";
+  answerCtx.beginPath();
+  answerCtx.ellipse(rightEyeX, rightEyeY, eyeR * 0.75, eyeR, 0, 0, Math.PI * 2);
+  answerCtx.fill();
+  answerCtx.strokeStyle = "#000000";
+  answerCtx.lineWidth = 4;
+  answerCtx.stroke();
+
+  const irisRX = eyeR * 0.5;
+  const irisRY = eyeR * 0.7;
+  const pupilRX = eyeR * 0.28;
+  const pupilRY = eyeR * 0.4;
+
+  [leftEyeX, rightEyeX].forEach((x, i) => {
+    const y = i === 0 ? leftEyeY : rightEyeY;
+    answerCtx.fillStyle = "#ff6347";
+    answerCtx.beginPath();
+    answerCtx.ellipse(x, y, irisRX, irisRY, 0, 0, Math.PI * 2);
+    answerCtx.fill();
+
+    answerCtx.fillStyle = "#000000";
+    answerCtx.beginPath();
+    answerCtx.ellipse(x, y, pupilRX, pupilRY, 0, 0, Math.PI * 2);
+    answerCtx.fill();
+
+    answerCtx.fillStyle = "#ffffff";
+    answerCtx.beginPath();
+    answerCtx.arc(x - pupilRX * 0.7, y - pupilRY * 0.5, eyeR * 0.2, 0, Math.PI * 2);
+    answerCtx.fill();
+  });
+
+  const mouthW = 90;
+
+  answerCtx.strokeStyle = "#333333";
+  answerCtx.lineWidth = 6;
+  answerCtx.lineCap = "round";
+  answerCtx.beginPath();
+  answerCtx.arc(mouthX, mouthY - 5, mouthW / 2, 0, Math.PI);
+  answerCtx.stroke();
+
+  answerCtx.fillStyle = "rgba(255,105,135,0.9)";
+  answerCtx.beginPath();
+  answerCtx.ellipse(leftCheekX, leftCheekY, 25, 12, 0, 0, Math.PI * 2);
+  answerCtx.ellipse(rightCheekX, rightCheekY, 25, 12, 0, 0, Math.PI * 2);
+  answerCtx.fill();
+}
+
 function animate() {
   draw();
   requestAnimationFrame(animate);
 }
 
+drawAnswerImage();
 animate();
