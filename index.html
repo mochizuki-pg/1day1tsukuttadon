@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>完璧などんどんをつくれ！ゲーム</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <h1>完璧などんどんをつくれ！ゲーム</h1>
+      </header>
+      <section class="score-area">
+        <div id="score" class="score"></div>
+        <div id="message" class="message"></div>
+      </section>
+      <section class="canvas-wrapper">
+        <canvas id="canvas"></canvas>
+      </section>
+      <section class="controls">
+        <button id="startBtn" class="btn btn-primary">スタート</button>
+        <button id="finishBtn" class="btn btn-success" disabled>完成！</button>
+        <button id="resetBtn" class="btn btn-secondary" disabled>リセット</button>
+      </section>
+      <section class="hint">
+        <h2>遊び方</h2>
+        <ul>
+          <li>「スタート」を押すとゲーム開始</li>
+          <li>パーツが見えなくなるので、目隠し状態で配置</li>
+          <li>「完成」を押すと結果発表</li>
+          <li>緑の点線の正解位置に近いほど高得点</li>
+        </ul>
+      </section>
+      <footer class="footer">
+        <p><a href="https://x.com/don_dawn_world" target="_blank" rel="noopener noreferrer">どんどん🪐@don_dawn_world</a></p>
+        <p><a href="https://x.com/hashtag/1%E6%97%A51%E3%81%A4%E3%81%8F%E3%81%A3%E3%81%9F%E3%81%A9%E3%82%93" target="_blank" rel="noopener noreferrer">#1日1つくったどん</a></p>
+      </footer>
+    </main>
+    <script src="./main.js"></script>
+  </body>
+</html>
